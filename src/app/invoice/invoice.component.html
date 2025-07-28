@@ -1,0 +1,122 @@
+<div [style.view-transition-name]="'serie-slide'" class="container  bg-slate-200 p-5 my-4 rounded-md mx-auto">
+    <!--title-->
+    <div class="font-bold text-4xl text-sky-700">
+        Carrito
+    </div>
+    <!--end title-->
+    <!--description-->
+    <div class="text-sky-800 py-4">
+        Contenido de los productos adquiridos para su compra mediante la selección de productos.
+    </div>
+    <!--end description-->
+    <!--content-->
+    <table class="table-auto w-full text-gray-800">
+        <thead class="bg-gray-400">
+            <tr class="">
+                <th class="md:px-6 py-3">
+                    N°
+                </th>
+                <th class="md:px-6 py-3">
+                    Producto
+                </th>
+                <th class="md:px-6 py-3">
+                    p/u [Bs]
+                </th>
+                <th class="md:px-6 py-3">
+                    Cantidad [u]
+                </th>
+                <th class="md:px-6 py-3">
+                    Sub total [Bs]
+                </th>
+                <th class="md:px-6 py-3">
+
+                </th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            <tr class="hover:bg-gray-300" *ngFor="let item of items; index as i">
+                <td class="py-3">
+                    {{ i + 1 }}
+                </td>
+                <td class="py-3">
+                    {{ item.name}}
+                </td>
+                <td class="py-3">
+                    {{ item.price | currency:'Bs. ' :'symbol':'1.2-2'}}
+                </td>
+                <td class="py-3">
+                    {{ item.quantity }}
+                </td>
+                <td class="py-3">
+                    {{ item.quantity * item.price | currency:'Bs. ' :'symbol':'1.2-2' }}
+                </td>
+                <td class="py-3">
+                    <button class="px-2 pb-1 rounded-xl
+                    text-white bg-red-800 
+                    hover:bg-red-600" (click)="removeItem(i)">
+                        <svg viewBox="0 0 24 24" fill="none" with="24" height="24">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
+                                    stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+                                <path
+                                    d="M9 5H7C5.89543 5 5 5.89543 5 7V19C5 20.1046 5.89543 21 7 21H10M15 5H17C18.1046 5 19 5.89543 19 7V12"
+                                    stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+                                <path d="M14 16L16.5 18.5M19 21L16.5 18.5M16.5 18.5L19 16M16.5 18.5L14 21"
+                                    stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+                            </g>
+                        </svg>
+                    </button>
+                </td>
+            </tr>
+
+            <tr class="font-bold text-lg text-blue-600">
+                <td colspan="3" class="py-1">
+                </td>
+                <td class="py-1">
+                    Sumatoria:
+                </td>
+                <td class="py-1">
+                    {{ result.sum | currency:'Bs. ' :'symbol':'1.2-2' }}
+                </td>
+            </tr>
+            <tr class="font-bold text-lg text-green-600">
+                <td colspan="3" class="py-1">
+                </td>
+                <td class="py-1">
+                    Envio:
+                </td>
+                <td class="py-1">
+                    {{ result.costSend + "%" }}
+                </td>
+            </tr>
+            <tr class="font-bold text-3xl text-orange-700">
+                <td colspan="3" class="py-1">
+                </td>
+                <td class="py-1">
+                    Total:
+                </td>
+                <td class="py-1">
+                    {{ result.result | currency:'Bs ' :'symbol':'1.2-2' }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!--end table-->
+    <!--footer-->
+    <div class="flex p-5 gap-6 text-center">
+        <div class="pl-4">
+            <img class="w-72" src="assets/pay.webp">
+        </div>
+        <div class="w-full">
+            <button class="btn-primary">
+                Continuar
+            </button>
+        </div>
+    </div>
+    <!--end footer-->
+</div>

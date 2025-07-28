@@ -1,0 +1,22 @@
+<div class="bg-patron-bg bg-repeat h-screen blur-[2px]"
+    style="background-size: 400px 400px;">
+
+</div>
+<!--card-->
+<div [style.view-transition-name]="'serie-slide'"
+    class=" bg-white h-1/2 w-64 p-6 px-8 border border-spacing-3 border-blue-400 rounded-xl
+-translate-y-[50em] translate-x-1/4 md:translate-x-1/2 md:w-1/2"
+    style="box-shadow:0px 20px 30px -10px rgb(38, 57, 77) ;">
+    <!--card header-->
+    <header class="font-bold text-blue-700">
+        <div
+            class="flex font-extralight text-4xl mx-auto md:w-[50%] items-center gap-4">
+            <img src="assets/logo-2078018.svg" alt class="h-20">MRZ store
+        </div>
+        <br>
+
+    </header>
+    <!--card content-->
+    <router-outlet />
+
+</div>

@@ -1,0 +1,98 @@
+<form [formGroup]="userForm" (ngSubmit)="saveData()">
+    <div class="font-bold text-blue-700 mx-auto md:w-[60%]">
+        Registro de usuario
+    </div>
+    <br>
+    <div class="grid grid-flow-row gap-8 mx-auto md:w-[60%]">
+        <div class>
+            <label for="name" class="text-blue-800">Nombre: </label>
+            &nbsp;&nbsp;
+            <input type="text" name="name"
+                class="input-box"
+                formControlName="name"
+                placeholder="Ingrese su nombre">
+            <span class="text-sm text-red-700"
+                *ngIf="userForm.controls['name'].hasError('required') && userForm.dirty">
+                {{ msg.required }}
+            </span>
+            <br>
+            <br>
+            <label for="lastName" class="text-blue-800">Apellidos: </label>
+            &nbsp;&nbsp;
+            <input type="text" name="lastName"
+                class="input-box"
+                formControlName="lastName"
+                placeholder="Ingrese su apellido">
+            <span class="text-sm text-red-700"
+                *ngIf="userForm.controls['lastName'].hasError('required') && userForm.dirty">
+                {{ msg.required }}
+            </span>
+            <br>
+            <br>
+            <label for="email" class="text-blue-800">E mail: </label>
+            &nbsp;&nbsp;
+            <input type="email" name="email"
+                class="input-box"
+                formControlName="email"
+                placeholder="user@empresa.com">
+            <span class="text-sm text-red-700"
+                *ngIf="userForm.controls['email'].hasError('required') && userForm.dirty">
+                {{ msg.required }}
+            </span>
+            <span class="text-sm text-red-700"
+                *ngIf="userForm.controls['email'].hasError('email') && userForm.dirty">
+                {{ msg.email }}
+            </span>
+            <br>
+            <br>
+            <label for="date" class="text-blue-800">Fecha de nacimiento:
+            </label>
+            &nbsp;&nbsp;
+            <input type="date" name="date"
+                class="input-box"
+                formControlName="date_of_birth">
+            <br>
+            <br>
+            <label for="password" class="text-blue-800">Contraseña: </label>
+            &nbsp;&nbsp;
+            <input type="password" name="password"
+                class="input-box"
+                formControlName="password"
+                placeholder="Contraseña">
+            <span class="text-sm text-red-700"
+                *ngIf="userForm.controls['password'].hasError('required') && userForm.dirty">
+                {{ msg.required }}
+            </span>
+            <br>
+            <br>
+            <label for="passwordConf" class="text-blue-800">Confirmar
+                contraseña: </label>
+            &nbsp;&nbsp;
+            <input type="password" name="passwordConf"
+                class="input-box"
+                formControlName="passwordConf"
+                placeholder="Repetir password">
+            <span class="text-sm text-red-700"
+                *ngIf="userForm.controls['passwordConf'].hasError('required') && userForm.dirty">
+                {{ msg.required }}
+            </span>
+            <br>
+            <br>
+            <label for="gender" class="text-blue-800">Sexo: </label>
+            <select name="gender" formControlName="gender"
+                aria-placeholder="Seleccione uno">                
+                <option [value]>Másculino</option>
+                <option [value]>Femenino</option>
+            </select>
+            <br>
+            <br>
+        </div>
+        <div class="w-full text-center">
+            <button type="submit"
+                class="btn-primary" [disabled]="userForm.invalid" >
+                Enviar
+            </button>
+
+        </div>
+    </div>
+</form>

@@ -1,0 +1,36 @@
+<app-header />
+<div class="flex pt-20">
+    <input type="checkbox" id="menu" class="hidden peer">
+    <label for="menu"
+        class="bg-open-menu w-6 h-5 bg bg-cover bg bg-center fixed inset-0 translate-x-4 mt-7
+            cursor-pointer z-50
+            peer-checked:bg-close-menu transition-all"></label>
+    <div class="flex-auto w-[20%] max-w-64 min-w-56 hidden 
+            peer-checked:block ">
+        <div class="bg-gray-200 h-full ">
+            <h1 class="text-center text-2xl font-bold text-gray-700 p-3">
+                <strong>
+                    Configuraciones
+                </strong>
+            </h1>
+            <ul class="divide-y divide-gray-400 p-3 ">
+                <!--lista items-->
+                <li class=" hover:bg-slate-100">
+                    <a routerLink="/config/product"
+                        class=" block  rounded-md pl-5 py-1 cursor-pointer"
+                        routerLinkActive="active-link bg-blue-300 font-bold" >
+                        Productos
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+    <div class="flex-auto w-[80%] min-h-[83dvh] 
+         bg-slate-600 ">
+        <router-outlet />
+    </div>
+</div>
+
+<app-footer />

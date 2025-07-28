@@ -1,0 +1,63 @@
+<div [style.view-transition-name]="'transition-card-prod'"
+    class="flex flex-wrap gap-6 m-10 justify-center">
+    <!--card-->
+    <div class="bg-slate-100 p-4 rounded-md w-96 shadow-2xl"
+        *ngFor="let item of filterProducts">
+        <!--card title-->
+        <header [style.view-transition-name]="'transition-title-'+ item.id"
+            class="font-sans font-semibold text-2xl">
+            {{ item.name }}
+
+        </header>
+        <!--card description-->
+        <details open class="font-mono text-gray-500 text-md py-2">
+            <p class="truncate">
+                {{ item.description }}
+            </p>
+        </details>
+        <!--card image-->
+
+        <div class="relative place-items-center rounded-md
+            bg-white">
+            <img [ngSrc]="item.image" width="600" height="600"
+                class="h-64 w-auto bg-white"
+                placeholder>
+        </div>
+
+        <!--card content-->
+        <div class=" flex flex-row gap-3 my-4 justify-between">
+            <div>
+                <h1 class="text-orange-300 font-bold text-xl">Price: </h1>
+                <span class="text-red-400 font-bold text-3xl">{{ item.price |
+                    currency:"BOB" }}</span>
+                <br>
+                <br>
+
+            </div>
+            <div>
+                <!--label for="cant" class="text-gray-500">Cantidad:</label>
+                <input class="border-2 border-yellow-300 p-1 m-2"
+                type="number" 
+                max="100" 
+                min="1"
+                
+                name="cant"-->
+                <p class=" text-gray-500">
+                    Estado: <span
+                        class=" bg-green-300 rounded-md p-1 text-xs">{{
+                        item.state_p }}</span>
+                </p>
+            </div>
+        </div>
+        <!--card footer-->
+        <div>
+            <button type="button"
+                class="w-full text-white bg-blue-400 p-2 rounded-md hover:bg-blue-500"
+                (click)="detailFunction(item.id)">
+                Ver
+            </button>
+        </div>
+    </div>
+    <!--End card-->
+
+</div>

@@ -1,0 +1,50 @@
+
+<div class="font-bold text-blue-700 mx-auto md:w-[60%]">
+    Inicio de sesión
+</div>
+<form  [formGroup]="logForm" (ngSubmit)="loginUser()">
+
+    <br> <div class="grid grid-flow-row gap-8 mx-auto md:w-[60%]">
+        <div>
+            <label for="e-mail" class="text-blue-800">E-mail: </label>
+            &nbsp;&nbsp;
+            <input type="e-mail" name="email"
+                class="input-box"
+                formControlName="email"
+                placeholder="user@empresa.com">
+            <span class="text-sm text-red-700"
+                *ngIf="logForm.controls['email'].hasError('required') && logForm.dirty">
+                {{ msg.required }}
+            </span>
+            <span class="text-sm text-red-700"
+                *ngIf="logForm.controls['email'].hasError('email') && logForm.dirty">
+                {{ msg.email }}
+            </span>
+            <br>
+            <br>
+            <label for="pass-word" class="text-blue-800">Contraseña: </label>
+            &nbsp;&nbsp;
+            <input type="password" name="pass-word"
+                class="input-box"
+                formControlName='password'
+                placeholder="Introdusca una contraseña">
+            <span class="text-sm text-red-700"
+                *ngIf="logForm.controls['password'].hasError('required') && logForm.dirty">
+                {{ msg.required }}
+            </span>
+            <br>
+            <br>
+            <a routerLink="/login/register" class="links">Registrarse</a>
+        </div>
+        <div class="w-full text-center">
+            <button type="submit"
+                class="btn-primary" 
+            [disabled]="logForm.invalid">
+                Enviar
+            </button>
+            &nbsp;&nbsp;
+            <a routerLink="/home/todos"
+                class="links">Volver</a>
+        </div>
+    </div>
+</form>

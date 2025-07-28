@@ -1,0 +1,99 @@
+<div [style.view-transition-name]="'serie-slide'" class="container p-5 my-4 rounded-md mx-auto md:w-[80%] xl:w-1/2 
+        bg-slate-200">
+    <!--title-->
+    <header class="font-bold text-4xl text-sky-700">
+        Producto
+    </header>
+    <!--end title-->
+    <!--description-->
+    <article class="text-sky-800 py-4">
+        Información disponible para la edicion y/o adición de productos en la
+        base de datos del sistema.
+    </article>
+    <!--end description-->
+    <form [formGroup]="formProduct" (submit)="saveOrUpdateProduct()">
+        <div class="font-bold text-blue-700 mx-auto md:w-[60%]">
+            {{ title}}
+        </div>
+        <br>
+        <div class="grid grid-flow-row gap-8 mx-auto md:w-[60%]">
+            <div class>
+                <label for="name" class="text-blue-800">Item: </label>
+                &nbsp;&nbsp;
+                <input type="text" name="name" class="input-box" formControlName="name" placeholder="Ingrese su nombre">
+                <br>
+                <span class="text-sm text-red-700"
+                    *ngIf="formProduct.controls['name'].hasError('required') && formProduct.dirty">
+                    {{ msg.required }}
+                </span>
+                <br>
+                <div class="flex flex:inline">
+                    <label for="description" class="text-blue-800">Descripción:
+                    </label>
+                    &nbsp;&nbsp;
+                    <textarea type="text" name="description" class="input-box" formControlName="description"
+                        placeholder="Ingrese una descripción" maxlength="60"></textarea>
+                    <br>
+                    <span class="text-sm text-red-700"
+                        *ngIf="formProduct.controls['description'].hasError('required') && formProduct.dirty">
+                        {{ msg.required }}
+                    </span>
+                </div>
+
+                <br>
+                <label for="price" class="text-blue-800">Precio de venta:
+                </label>
+                &nbsp;&nbsp;
+                <input type="number" name="price" class="input-box" min="0" formControlName="price">
+                <br>
+                <span class="text-sm text-red-700"
+                    *ngIf="formProduct.controls['price'].hasError('required') && formProduct.dirty">
+                    {{ msg.required }}
+                </span>
+                <br>
+                <label for="image" class="text-blue-800">Imagen: </label>
+                &nbsp;&nbsp;
+                <div class="flex flex:inline">
+                    <input type="file" name="image" class="input-box" accept="image/*" placeholder="Escoja una imagen"
+                        (change)="onFileSelected($event)">
+                    <!--texto oculto con la direccion de la imagen-->
+                    <input type="text" name="image" class="w-15 h-20 border-gray-700 border-b-4 hidden" formControlName="image">
+                    <!--Fin texto oculto con la direccion de la imagen-->
+                    <img #imgPreview class=" h-20 ">
+                </div>
+
+                <span class="text-sm text-red-700"
+                    *ngIf="formProduct.controls['image'].hasError('required') && formProduct.dirty">
+                    {{ msg.required }}
+                </span>
+                <br>
+                <label for="status_prod_id" class="text-blue-800">Estado:
+                </label>
+                <select name="status_prod_id" formControlName="status_prod_id" class="input-box"
+                    aria-placeholder="Seleccione uno">
+                    <option *ngFor="let state of states" [value]="state.id.toString()">
+                        {{ state.state_p | titlecase}}
+                    </option>
+                </select>
+                <br>
+                <br>
+                <label for="category_id" class="text-blue-800">Categoría:
+                </label>
+                <select name="category_id" formControlName="category_id" class="input-box"
+                    aria-placeholder="Seleccione uno">
+                    <option *ngFor="let cat of categories" [value]="cat.id.toString()">
+                        {{ cat.category |titlecase }}
+                    </option>
+                </select>
+                <br>
+            </div>
+            <div class="w-full flex flex-row gap-4">
+                <a routerLink="../../" class="btn-danger" >Volver</a>
+                <button type="submit" class="btn-primary" [disabled]="formProduct.invalid">
+                    Enviar
+                </button>
+
+            </div>
+        </div>
+    </form>
+</div>

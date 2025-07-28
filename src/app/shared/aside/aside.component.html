@@ -1,0 +1,23 @@
+<div class="bg-gray-200 h-full ">
+    <ul class="divide-y divide-gray-400 p-3 ">
+        <!--lista items-->
+        <li  class=" hover:bg-slate-100">
+            <a routerLink="/home/todos" class=" block  rounded-md pl-5 py-1 cursor-pointer" 
+            routerLinkActive="active-link bg-blue-300 font-bold"
+            (click)="refreshPageDashboard( 0 )">
+                Ver todos
+            </a>
+        </li>
+        
+        <!--lista items-->
+        <li  *ngFor="let item of categoryVar" class=" hover:bg-slate-100">
+            <a routerLink="/home/{{ item.category }}" class=" block  rounded-md pl-5 py-1 cursor-pointer" 
+            routerLinkActive="active-link bg-blue-300 font-bold"
+            (click)="refreshPageDashboard( item.id )">
+                {{ item.category | titlecase }}
+            </a>
+        </li>
+       
+       
+    </ul>
+</div>

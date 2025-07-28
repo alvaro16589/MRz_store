@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.links {
+    @apply text-blue-600 underline hover:border-2 p-4 border-sky-200;
+
+}
+
+.input-box{
+    @apply h-12 border-2 border-sky-400 rounded-md p-2;
+}
+
+.btn-primary{
+    @apply w-1/2 text-white bg-blue-400 p-2 rounded-md hover:bg-blue-500 disabled:bg-slate-600;
+}
+
+.btn-success{
+    @apply text-white bg-green-500 p-2 rounded-md hover:bg-green-600 disabled:bg-slate-600;
+
+}
+
+
+.btn-danger{
+    @apply text-white bg-red-500 p-2 rounded-md hover:bg-red-600 disabled:bg-slate-600;
+
+}
+/*Animations Slide for chage layout*/
+@keyframes slide-out {
+    to{
+        transform: translateX(200%);
+    }
+}
+
+@keyframes slide-in {
+    from{
+        transform: translateX(-100%);
+    }
+}
+
+::view-transition-new(serie-slide){
+    animation-duration: 500ms;
+    animation-name: slide-in;
+}
+
+::view-transition-old(serie-slide){
+    animation-duration: 500ms;
+    animation-name: slide-out;
+}
