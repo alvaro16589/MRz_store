@@ -10,6 +10,7 @@
         hover:bg-slate-200 ">
             Home
         </a>
+        <button (click)="prueba()" class="hidden"> prueba</button>
     </div>
 
     <span class></span>
@@ -69,7 +70,8 @@
             <div class="cursor-pointer hover:bg-gray-300 p-2">
                 {{ userLogged.name + " " + userLogged.last_name | uppercase }}
             </div>
-            <div class="cursor-pointer hover:bg-gray-300 p-2">
+            <div class="cursor-pointer hover:bg-gray-300 p-2" 
+                *ngIf="userLogged.rol === 'root'">
                 <a routerLink="/config">Configuraciones</a>
             </div>
             <div (click)="logout()"

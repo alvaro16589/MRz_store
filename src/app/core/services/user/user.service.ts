@@ -27,9 +27,9 @@ export class UserService {
   }
   LogWatcher() {
     return this.http.post<Users[]>(environment.url_api + environment.user + environment.logWatcher, {},
-    {
-      withCredentials: true  // Incluye las cookies en la solicitud
-    });
+      {
+        withCredentials: true  // Incluye las cookies en la solicitud
+      });
   }
   getLogout() {
     return this.http.get(environment.url_api + environment.user + environment.logout,
@@ -37,6 +37,12 @@ export class UserService {
         withCredentials: true // Incluye las cookies en la solicitud
       }
     );
+  }
+
+  emailExist(email: string) {//find eamil repited
+    
+    return this.http.post<{result:string}>(environment.url_api + environment.user + environment.findEmail,{email});
+
   }
 
   //add new Userss to database

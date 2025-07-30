@@ -3,7 +3,7 @@ import { Router, RouterModule } from '@angular/router';
 import { VariablesService } from '../../core/services/variables/variables.service';
 import { UserLog } from '../../core/models/user.model';
 import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
+
 import { CarProdModel } from '../../core/models/views.model';
 import { UserService } from '../../core/services/user/user.service';
 
@@ -13,7 +13,6 @@ import { UserService } from '../../core/services/user/user.service';
   imports: [
     RouterModule,
     CommonModule,
-
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
@@ -62,7 +61,9 @@ export class HeaderComponent implements OnInit {
 
   }
 
-
+  prueba(){
+    this.route.navigateByUrl('login/session');
+  }
 
   toggleDropdown() { //toogle
 
@@ -79,6 +80,7 @@ export class HeaderComponent implements OnInit {
     this.variablesService.cleanUserLogged();
     this.userLogged = this.variablesService.getUserlogged();
     this.userService.getLogout().subscribe();
+    this.route.navigateByUrl('home/todos');
   }
 
   goToInvoice() {

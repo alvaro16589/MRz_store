@@ -34,7 +34,10 @@
             <input type="email" name="email"
                 class="input-box"
                 formControlName="email"
-                placeholder="user@empresa.com">
+                placeholder="user@empresa.com"
+                (keyup)="emailValidator()"
+                >
+            <br>
             <span class="text-sm text-red-700"
                 *ngIf="userForm.controls['email'].hasError('required') && userForm.dirty">
                 {{ msg.required }}
@@ -42,6 +45,10 @@
             <span class="text-sm text-red-700"
                 *ngIf="userForm.controls['email'].hasError('email') && userForm.dirty">
                 {{ msg.email }}
+            </span>
+            <span class="text-sm text-red-700"
+                *ngIf="showMessageEmail">
+                {{ msg.emailRepetido }}
             </span>
             <br>
             <br>

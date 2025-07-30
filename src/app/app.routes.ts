@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { LayoutComponent } from './shared/layout/layout.component';
 import { LoginComponent } from './login/login-father/login.component';
 import { LayoutConfComponent } from './inOutItems/layout-conf/layout-conf.component';
+import { rolUserGuard, userInterfaceLoginGuard } from './core/guards/rol-user.guard';
 
 
 
@@ -33,6 +34,7 @@ export const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent,
+        canActivate: [userInterfaceLoginGuard],
         children: [
             {
                 path: '',
@@ -42,7 +44,8 @@ export const routes: Routes = [
             },
             {
                 path: 'session',
-                loadComponent: () => import('./login/user-session/user-session.component').then(c => c.UserSessionComponent)                
+                loadComponent: () => import('./login/user-session/user-session.component').then(c => c.UserSessionComponent),
+                              
             },
             {
                 path: 'register',
@@ -53,6 +56,7 @@ export const routes: Routes = [
     {
         path: 'config',
         component: LayoutConfComponent,
+        canActivateChild: [rolUserGuard],
         children: [
             {
                 path: '',

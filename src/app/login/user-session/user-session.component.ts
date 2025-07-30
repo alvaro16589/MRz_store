@@ -68,7 +68,7 @@ export class UserSessionComponent {
           });
 
           
-          //this.orderService.createOrder({ user_id: data.rows[0].id, status_id: 2 }).subscribe();
+          this.orderService.createOrder({ user_id: data.rows[0].id, status_id: 2 }).subscribe();
           this.router.navigateByUrl('/', { skipLocationChange: false });
 
         }

@@ -11,4 +11,5 @@ export const environment = {
     imageFile: 'image/',
     logWatcher: '/logwatcher',
     logout: '/logout',
+    findEmail: '/findemail'
 };
