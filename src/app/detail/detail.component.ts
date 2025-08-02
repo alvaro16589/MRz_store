@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
 import { ViewsService } from '../core/services/views/views.service';
 import { CarProdModel, ViewProdModel } from '../core/models/views.model';
@@ -19,6 +19,14 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
   styleUrl: './detail.component.css'
 })
 export class DetailComponent implements OnInit {
+  //zoom cariables
+  @ViewChild('container') containerRef!: ElementRef;
+  @ViewChild('mainImage') imageRef!: ElementRef;
+  @ViewChild('zoomLens') zoomLensRef!: ElementRef;
+
+  zoomStyle: { [key: string]: string } = {};
+  //end zoom
+  colorState: any; //Variable that use colors of product's state
 
   formSend = new FormGroup({
     quantity: new FormControl<number>(1, Validators.required)
@@ -36,14 +44,17 @@ export class DetailComponent implements OnInit {
     state_p: '',
     quantity: 0
   };
-
+  //Zoom settings 
+  isZoomed = false;
+  transformOrigin = 'center center';
+  //end zoom settings
   constructor(
     private viewsService: ViewsService,
     private route: Router,
     private activatedRoute: ActivatedRoute,
     private variablesService: VariablesService
   ) {
-
+    this.colorState = variablesService.colorEstado;
   }
 
   ngOnInit(): void {
@@ -82,4 +93,35 @@ export class DetailComponent implements OnInit {
   }
 
 
+
+  onZoom(event: MouseEvent) {
+    const container = this.containerRef.nativeElement as HTMLElement;
+    const image = this.imageRef.nativeElement as HTMLImageElement;
+
+    const rect = container.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    const lensSize = 192; // 48 Tailwind -> 192px
+    const half = lensSize / 2;
+
+    const backgroundX = (x / container.offsetWidth) * 115;
+    const backgroundY = (y / container.offsetHeight) * 115;
+
+    this.zoomStyle = {
+      left: `${x - half}px`,
+      top: `${y - half}px`,
+      backgroundImage: `url('${image.src}')`,
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: `${container.offsetWidth * 1.8}px ${container.offsetHeight * 2}px`,
+      backgroundPosition: `${backgroundX}% ${backgroundY}%`,
+      backdropFilter: 'blur(2px)',
+    };
+  }
+
+  hideZoom() {
+    this.zoomStyle = {
+      display: 'none',
+    };
+  }
 }

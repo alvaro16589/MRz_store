@@ -2,7 +2,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* setings of zoom image*/
 
+/*end setings of zoom image*/
 .links {
     @apply text-blue-600 underline hover:border-2 p-4 border-sky-200;
 
@@ -48,3 +50,4 @@
     animation-duration: 500ms;
     animation-name: slide-out;
 }
+

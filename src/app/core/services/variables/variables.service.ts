@@ -3,12 +3,19 @@ import { CarProdModel, ViewProdModel } from '../../models/views.model';
 import { ViewsService } from '../views/views.service';
 import { UserLog } from '../../models/user.model';
 import { BehaviorSubject } from 'rxjs';
-import { S } from '@angular/cdk/keycodes';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class VariablesService {
+  //color de los controles para el estado de los productos
+  colorEstado = {
+    ELIMINADO: 'bg-red-500',
+    ACTIVO: 'bg-green-300',
+    AGOTADO: 'bg-yellow-400',
+    INACTIVO: 'bg-gray-300'
+  }
 
   carItems = signal<CarProdModel[]>([]);
   private carItemsB: CarProdModel[] = [];

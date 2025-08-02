@@ -1,17 +1,22 @@
-<div [style.view-transition-name]="'transition-card-prod'" class="container p-5 my-4 rounded-md mx-auto 
+<div [style.view-transition-name]="'transition-card-prod'" 
+    class="container rounded-xl mt-28 md:mt-10 mx-auto
     bg-slate-200 md:w-[95%]
     xl:w-3/4">
-    <div [style.view-transition-name]="'transition-title-'+ detailProd.id" class="font-bold text-3xl py-5
+    <div [style.view-transition-name]="'transition-title-'+ detailProd.id" class="font-bold text-3xl p-5
     text-sky-700">
         {{ detailProd.name }}
     </div>
-    <div class="flex flex-col w-full gap-9 
-    md:flex-row ">
-        <div class="md:w-1/2 ">
-            <img [ngSrc]="detailProd.image" class="aspect-video object-contain 
-            bg-white" width="1000" height="1000">
+    <div class=" flex flex-col w-full gap-9 
+    xl:flex-row ">
+        <div class="relative bg-white xl:w-3/4 overflow-hidden group" #container (mousemove)="onZoom($event)"
+            (mouseleave)="hideZoom()">
+            <img #mainImage [ngSrc]="detailProd.image" class="w-full object-contain max-h-[36rem] pointer-events-none"
+                width="1000" height="1000" />
+
+            <div #zoomLens class="hidden group-hover:block absolute w-52 h-52 border border-gray-300 rounded-full"
+                [ngStyle]="zoomStyle"></div>
         </div>
-        <div class>
+        <div class="p-4">
             <div class="text-sky-800 text-xl">
                 {{ detailProd.description }}
             </div>
@@ -26,19 +31,19 @@
                 </div>
                 <div>
                     <p class=" text-gray-500">
-                        Estado: <span class=" bg-green-300 rounded-md p-1 text-xs capitalize">
+                        Estado: <span class=" rounded-md p-1 text-xs capitalize
+                        {{(detailProd.state_p === 'ELIMINADO')? colorState.ELIMINADO:
+                         (detailProd.state_p === 'ACTIVO')? colorState.ACTIVO:
+                         (detailProd.state_p === 'AGOTADO')? colorState.AGOTADO: colorState.INACTIVO}}">
                             {{ detailProd.state_p }}
                         </span>
                     </p>
                 </div>
             </div>
             <form (ngSubmit)="pushItems()" [formGroup]="formSend">
-
-                <div class="py-9
-            text-gray-500">
+                <div class="py-9 text-gray-500">
                     <label for="cant">Cantidad: <input name="cant" type="number" class="input-box" min="1" max="100"
                             formControlName="quantity"></label>
-
                 </div>
                 <!--card footer-->
                 <div class="flex">
@@ -55,11 +60,13 @@
             </form>
             <p class="text-xs pt-8 text-gray-500">*Todos los precios y
                 disponibilidad estan sujetos a cambios por los
-                administradores.</p>
+                administradores.
+            </p>
             <p class="text-xs pt-8 text-gray-500">*La cantidad de items
                 señalados y una vez <strong>agregados al carrito</strong>, no se
                 puede modificar dentro del estracto pero es posible adicionar
-                items.</p>
+                items.
+            </p>
         </div>
     </div>
 </div>

@@ -136,7 +136,7 @@ export class EditProductComponent {
       //actions for editing a product on DB
       try {
         if (this.data) { //if data have a values 
-          this.nameFile = Date.now() + Math.round(Math.random() * 1E9) + '-imagen.' + this.data.name.substring(this.data.name.length - 3)
+          this.nameFile = Date.now() + Math.round(Math.random() * 1E9) + '-imagen' + this.getExtension(this.data.name);
           f.append('imagen', this.data, this.nameFile);
           this.uploadFileService.uploadFile(f).subscribe();//subir archivos
           this.productService.updateProduct(this.idProduct.toString(), {
@@ -152,17 +152,29 @@ export class EditProductComponent {
             name: this.formProduct.value.name ?? '',
             description: this.formProduct.value.description ?? '',
             price: Number(this.formProduct.value.price ?? 0),
+            image: this.formProduct.value.image ?? '',
             status_prod_id: Number(this.formProduct.value.status_prod_id ?? 0),
             category_id: Number(this.formProduct.value.category_id ?? 0)
           }).subscribe();
         }
-        
+
         this.toastr.success('La actualizacion se ha efectuado satisfactoriamente', 'Operación satisfactoria');
       } catch (error) {
         this.toastr.error("¡Ha ocurrido un error de conección!", 'Error');
       }
 
     }
+  }
+
+  getExtension(name: string) {
+    let c = name.length - 1, ext = '';    
+    while (c > 0) {
+      ext = name[c] + ext;
+      if(name[c] === '.')return ext
+      c--;
+    }
+    return '.jpg';
+
   }
 
 

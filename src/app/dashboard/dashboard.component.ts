@@ -20,12 +20,14 @@ export class DashboardComponent implements OnInit {
 
   filterProducts: ViewProdModel[] =[];
   
+  colorState :any; //Variable that use colors of product's state
 
   constructor(
     private viewProd : ViewsService,
     private activatedRoute: ActivatedRoute,  
     private variableService: VariablesService,
-    private route: Router
+    private route: Router,
+    
     
   ){
     effect(()=>{
@@ -34,7 +36,7 @@ export class DashboardComponent implements OnInit {
       this.filterProducts = data;
       
     });
-    
+    this.colorState = variableService.colorEstado
   }
 
   

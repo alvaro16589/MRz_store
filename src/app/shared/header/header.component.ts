@@ -1,4 +1,4 @@
-import { Component, effect, ElementRef, OnInit, Renderer2, ViewChild, viewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { VariablesService } from '../../core/services/variables/variables.service';
 import { UserLog } from '../../core/models/user.model';
@@ -61,10 +61,6 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  prueba(){
-    this.route.navigateByUrl('login/session');
-  }
-
   toggleDropdown() { //toogle
 
     const isHidden = this.dropdownElement.nativeElement.classList.contains('hidden');
@@ -73,6 +69,7 @@ export class HeaderComponent implements OnInit {
       this.renderer.removeClass(this.dropdownElement.nativeElement, 'hidden');
     } else {
       this.renderer.addClass(this.dropdownElement.nativeElement, 'hidden');
+    
     }
   }
 

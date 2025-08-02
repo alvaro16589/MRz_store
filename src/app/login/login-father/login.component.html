@@ -4,14 +4,22 @@
 </div>
 <!--card-->
 <div [style.view-transition-name]="'serie-slide'"
-    class=" bg-white h-1/2 w-64 p-6 px-8 border border-spacing-3 border-blue-400 rounded-xl
--translate-y-[50em] translate-x-1/4 md:translate-x-1/2 md:w-1/2"
+    class=" bg-white h-auto w-[100%] sm:w-[70%] md:w-[80%] xl:w-[70%] p-6 px-8 
+    border border-spacing-3 border-blue-400 rounded-xl
+    absolute left-0 top-0 
+    sm:left-[18%] md:left-[10%] xl:left-[12%] 2xl:left-[14%] 
+    sm:top-[5%]  md:top-[8%] xl:top-[10%] 
+    flex flex-col 
+    xl:flex-row place-items-center "
     style="box-shadow:0px 20px 30px -10px rgb(38, 57, 77) ;">
     <!--card header-->
     <header class="font-bold text-blue-700">
-        <div
-            class="flex font-extralight text-4xl mx-auto md:w-[50%] items-center gap-4">
-            <img src="assets/logo-2078018.svg" alt class="h-20">MRZ store
+        <div class="flex md:flex-col 2xl:flex-row font-extralight text-4xl mx-auto place-items-center gap-4">
+            <img src="assets/logo-2078018.svg" alt 
+                class="h-20 md:h-24 xl:h-52">
+            <p class="xl:text-7xl text-center">
+                MRZ store
+            </p>
         </div>
         <br>
 

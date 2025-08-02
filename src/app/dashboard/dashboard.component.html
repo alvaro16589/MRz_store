@@ -1,58 +1,59 @@
 <div [style.view-transition-name]="'transition-card-prod'"
-    class="flex flex-wrap gap-6 m-10 justify-center">
+    class="flex flex-wrap gap-6 mb-10 mt-28 md:mt-10 justify-center">
     <!--card-->
-    <div class="bg-slate-100 p-4 rounded-md w-96 shadow-2xl"
-        *ngFor="let item of filterProducts">
-        <!--card title-->
-        <header [style.view-transition-name]="'transition-title-'+ item.id"
-            class="font-sans font-semibold text-2xl">
-            {{ item.name }}
-
-        </header>
-        <!--card description-->
-        <details open class="font-mono text-gray-500 text-md py-2">
-            <p class="truncate">
-                {{ item.description }}
-            </p>
-        </details>
+    <div class="relative bg-white p-4 
+            rounded-md h-[30rem] w-96 shadow-2xl 
+            overflow-hidden
+            flex flex-col" *ngFor="let item of filterProducts">
         <!--card image-->
-
-        <div class="relative place-items-center rounded-md
-            bg-white">
-            <img [ngSrc]="item.image" width="600" height="600"
-                class="h-64 w-auto bg-white"
-                placeholder>
-        </div>
-
+        <img [style.view-transition-name]="'transition-image-'+ item.id" [ngSrc]="item.image" width="600" height="600"
+            class="pt-28 w-[100%]  
+            absolute inset-0 object-cover 
+            transition-transform duration-500 ease-in-out hover:scale-110" placeholder>
+        <!--End card image-->
         <!--card content-->
-        <div class=" flex flex-row gap-3 my-4 justify-between">
-            <div>
+        <div>
+            <!--card title-->
+            <header [style.view-transition-name]="'transition-title-'+ item.id"
+                class="font-sans font-semibold text-2xl">
+                {{ item.name }}
+            </header>
+            <!--End card title-->
+            <!--Card description-->
+            <details open class="font-mono text-gray-500 text-md py-2 
+                relative">
+                <p class="truncate">
+                    {{ item.description }}
+                </p>
+            </details>
+        </div>
+        <div class="flex-1"></div>
+        <div class="relative bottom-4 flex flex-row gap-3 my-4 justify-between ">
+            <div class="bg-white p-1 rounded-lg bg-opacity-50">
                 <h1 class="text-orange-300 font-bold text-xl">Price: </h1>
-                <span class="text-red-400 font-bold text-3xl">{{ item.price |
-                    currency:"BOB" }}</span>
-                <br>
-                <br>
+                <span class="text-red-400 font-bold text-3xl">
+                    <strong>
+                        {{ item.price | currency:"BOB" }}
+                    </strong>
+                </span>
 
             </div>
             <div>
-                <!--label for="cant" class="text-gray-500">Cantidad:</label>
-                <input class="border-2 border-yellow-300 p-1 m-2"
-                type="number" 
-                max="100" 
-                min="1"
-                
-                name="cant"-->
-                <p class=" text-gray-500">
-                    Estado: <span
-                        class=" bg-green-300 rounded-md p-1 text-xs">{{
-                        item.state_p }}</span>
+                <p class="p-1 text-gray-800 bg-white rounded-md bg-opacity-30">
+                    Estado: <span class=" {{
+                        (item.state_p === 'ELIMINADO')? colorState.ELIMINADO:
+                         (item.state_p === 'ACTIVO')? colorState.ACTIVO:
+                         (item.state_p === 'AGOTADO')? colorState.AGOTADO: colorState.INACTIVO
+                        }} rounded-md p-1 text-xs">
+                        {{item.state_p }}
+                    </span>
                 </p>
             </div>
         </div>
+        <!--End card description-->
         <!--card footer-->
-        <div>
-            <button type="button"
-                class="w-full text-white bg-blue-400 p-2 rounded-md hover:bg-blue-500"
+        <div class="relative ">
+            <button type="button" class="w-full text-white bg-blue-400 p-2 rounded-md hover:bg-blue-500"
                 (click)="detailFunction(item.id)">
                 Ver
             </button>

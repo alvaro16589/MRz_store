@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { VariablesService } from '../../../core/services/variables/variables.service';
 
 
 @Component({
@@ -19,14 +20,16 @@ import { RouterModule } from '@angular/router';
   styleUrl: './products.component.css'
 })
 export class ProductsComponent {
- 
+  colorState: any; //Variable that use colors of product's state
+
   prods: { item: ViewProdModel, num: number }[] = []; //recibe todos los valores de la lista de la vista
   filterProducts: { item: ViewProdModel, num: number }[] = [];//recibe los valores filtrados de la lista guardada en prods
   p: number = 1;//variable util para el el paginador
   inputValue = "";
   constructor(
     private viewProdService: ViewsService,
-  
+    private variableService: VariablesService
+
   ) {
 
     viewProdService.getAllProductsCatStatus().subscribe(data => {
@@ -35,6 +38,8 @@ export class ProductsComponent {
         this.filterProducts.push({ item, num: index + 1 });
       });
     })
+
+    this.colorState = variableService.colorEstado;
 
 
   };
@@ -52,5 +57,5 @@ export class ProductsComponent {
     }
   }
 
- 
+
 }

@@ -26,8 +26,8 @@ export class UserRegisterComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
     gender: new FormControl('', Validators.required),
     date_of_birth: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-    passwordConf: new FormControl('', Validators.required),
+    password: new FormControl('', [Validators.required, Validators.minLength(7)]),
+    passwordConf: new FormControl('', [Validators.required, Validators.minLength(7)]),
     rol: new FormControl('user')
   });
 
@@ -36,6 +36,7 @@ export class UserRegisterComponent {
     required: '*El campo es requerido.',
     email: 'El campo debe ser un E mail.',
     error: "Ha ocurrido un error inesperado.",
+    passwordLength: 'La contraseña debe tener al menos 7 caracteres.',
     correct: 'La operación se ha completado correctamente.',
     emailRepetido: 'El E-mail ya existe '
   }

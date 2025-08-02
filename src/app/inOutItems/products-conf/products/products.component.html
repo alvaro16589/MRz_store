@@ -84,23 +84,16 @@
                     <img src="{{ item.item.image }}" class="h-14">
                 </td>
                 <!--estructura switch case-->
-                <td [ngSwitch]="item.item.state_p" class="py-3 text-center">
-                    <div *ngSwitchCase="'ELIMINADO'" class="pb-1 rounded-xl
-                    text-white bg-red-700">
+                <td  class="py-3 text-center">
+                    <div class="pb-1 rounded-xl text-gray-600 
+                    {{
+                        (item.item.state_p.toUpperCase()=== 'ELIMINADO')? colorState.ELIMINADO:
+                         (item.item.state_p.toUpperCase() === 'ACTIVO')? colorState.ACTIVO:
+                         (item.item.state_p.toUpperCase() === 'AGOTADO')? colorState.AGOTADO: colorState.INACTIVO
+                        }}">
                         {{ item.item.state_p | titlecase }}
                     </div>
-                    <div *ngSwitchCase="'ACTIVO'" class="pb-1 rounded-xl
-                    text-white bg-green-800">
-                        {{ item.item.state_p | titlecase }}
-                    </div>
-                    <div *ngSwitchCase="'AGOTADO'" class="pb-1 rounded-xl
-                    text-white bg-yellow-600">
-                        {{ item.item.state_p | titlecase }}
-                    </div>
-                    <div *ngSwitchCase="'INACTIVO'" class="pb-1 rounded-xl
-                    text-white bg-gray-400">
-                        {{ item.item.state_p | titlecase }}
-                    </div>
+                    
                 </td>
                 <!--end switch case structure-->
                 <td class="py-3 pl-1">

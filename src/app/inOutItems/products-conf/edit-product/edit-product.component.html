@@ -20,7 +20,9 @@
             <div class>
                 <label for="name" class="text-blue-800">Item: </label>
                 &nbsp;&nbsp;
-                <input type="text" name="name" class="input-box" formControlName="name" placeholder="Ingrese su nombre">
+                <input type="text" name="name" 
+                    class="input-box" formControlName="name" placeholder="Ingrese su nombre"
+                    maxlength="60">
                 <br>
                 <span class="text-sm text-red-700"
                     *ngIf="formProduct.controls['name'].hasError('required') && formProduct.dirty">
@@ -57,11 +59,11 @@
                     <input type="file" name="image" class="input-box" accept="image/*" placeholder="Escoja una imagen"
                         (change)="onFileSelected($event)">
                     <!--texto oculto con la direccion de la imagen-->
-                    <input type="text" name="image" class="w-15 h-20 border-gray-700 border-b-4 hidden" formControlName="image">
+                    <input type="text" name="image" 
+                        class="w-15 h-20 border-gray-700 border-b-4 hidden" formControlName="image">
                     <!--Fin texto oculto con la direccion de la imagen-->
                     <img #imgPreview class=" h-20 ">
                 </div>
-
                 <span class="text-sm text-red-700"
                     *ngIf="formProduct.controls['image'].hasError('required') && formProduct.dirty">
                     {{ msg.required }}
