@@ -17,7 +17,7 @@ export class VariablesService {
     INACTIVO: 'bg-gray-300'
   }
 
-  carItems = signal<CarProdModel[]>([]);
+  
   private carItemsB: CarProdModel[] = [];
   private carItemsB$: BehaviorSubject<CarProdModel[]> = new BehaviorSubject<CarProdModel[]>([]);
   items: CarProdModel[] = []
@@ -93,27 +93,7 @@ export class VariablesService {
   }
 
 
-  /////////////////////////////////////////////////car items
 
-  carItemsAdding(data: CarProdModel) {
-
-    let x = false;
-    this.carItems().map(val => {
-      if (val.id === data.id) {
-        val.quantity += data.quantity;
-        x = true;
-      };
-    });
-    if (!x) {
-      this.carItems.update((dt) => [...dt, data]);
-    };
-
-
-  }
-
-  cleanCar() {
-    this.carItems.set([]);
-  }
   ///////////////       OBSERVABLE CAR ITEMS
   get sharedItems() {
     return this.carItemsB$.asObservable();
@@ -141,6 +121,11 @@ export class VariablesService {
     this.carItemsB.splice(index, 1);
     this.carItemsB$.next(this.carItemsB);   
     
+  }
+
+  clearAllItems(){
+    this.carItemsB = [];
+    this.carItemsB$.next([]);  
   }
 }
 

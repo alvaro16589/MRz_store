@@ -1,17 +1,18 @@
 import { Component, effect, OnInit } from '@angular/core';
-import { ViewProdModel } from '../core/models/views.model';
+import { ViewProdModel } from '../../core/models/views.model';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { ViewsService } from '../core/services/views/views.service';
-import { VariablesService } from '../core/services/variables/variables.service';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { VariablesService } from '../../core/services/variables/variables.service';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   imports: [
+    NgxPaginationModule,
     RouterModule,
     CommonModule,
-    NgOptimizedImage
+    NgOptimizedImage,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
@@ -19,12 +20,11 @@ import { VariablesService } from '../core/services/variables/variables.service';
 export class DashboardComponent implements OnInit {
 
   filterProducts: ViewProdModel[] =[];
-  
+   p: number = 1;//variable util para el el paginador
   colorState :any; //Variable that use colors of product's state
 
   constructor(
-    private viewProd : ViewsService,
-    private activatedRoute: ActivatedRoute,  
+    
     private variableService: VariablesService,
     private route: Router,
     

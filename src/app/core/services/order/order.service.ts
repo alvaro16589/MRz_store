@@ -21,6 +21,10 @@ export class OrderService {
     return this.http.get<OrderModel>(environment.url_api + environment.orders + '/' + id);
   }
   //add new Orderss to database
+  getOrderForUserID(id_user : number){
+    return this.http.get<[OrderModel]>(environment.url_api + environment.orderByUser + id_user);
+  }
+  //add new Orderss to database
   createOrder(Order : SaveOrderModel){
     return this.http.post(environment.url_api + environment.orders, Order);
   }

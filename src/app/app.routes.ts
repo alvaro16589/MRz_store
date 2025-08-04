@@ -19,15 +19,15 @@ export const routes: Routes = [
             },
             {
                 path: 'home/:id',
-                loadComponent: () => import('./dashboard/dashboard.component').then(c => c.DashboardComponent)
+                loadComponent: () => import('./home-pages/dashboard/dashboard.component').then(c => c.DashboardComponent)
             },
             {
                 path: 'invoice',
-                loadComponent: () => import('./invoice/invoice.component').then(c => c.InvoiceComponent)
+                loadComponent: () => import('./home-pages/invoice/invoice.component').then(c => c.InvoiceComponent)
             },
             {
                 path: 'detail/:id',
-                loadComponent: () => import('./detail/detail.component').then(c => c.DetailComponent)
+                loadComponent: () => import('./home-pages/detail/detail.component').then(c => c.DetailComponent)
             }
         ]
     },

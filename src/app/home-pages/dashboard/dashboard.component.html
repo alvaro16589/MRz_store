@@ -4,12 +4,15 @@
     <div class="relative bg-white p-4 
             rounded-md h-[30rem] w-96 shadow-2xl 
             overflow-hidden
-            flex flex-col" *ngFor="let item of filterProducts">
+            flex flex-col"
+        *ngFor="let item of filterProducts | paginate: { itemsPerPage: 10, currentPage: p, totalItems: filterProducts.length }">
         <!--card image-->
-        <img [style.view-transition-name]="'transition-image-'+ item.id" [ngSrc]="item.image" width="600" height="600"
+        <img [style.view-transition-name]="'transition-image-'+ item.id"
+            [ngSrc]="item.image" width="600" height="600"
             class="pt-28 w-[100%]  
             absolute inset-0 object-cover 
-            transition-transform duration-500 ease-in-out hover:scale-110" placeholder>
+            transition-transform duration-500 ease-in-out hover:scale-110"
+            placeholder>
         <!--End card image-->
         <!--card content-->
         <div>
@@ -28,7 +31,8 @@
             </details>
         </div>
         <div class="flex-1"></div>
-        <div class="relative bottom-4 flex flex-row gap-3 my-4 justify-between ">
+        <div
+            class="relative bottom-4 flex flex-row gap-3 my-4 justify-between ">
             <div class="bg-white p-1 rounded-lg bg-opacity-50">
                 <h1 class="text-orange-300 font-bold text-xl">Price: </h1>
                 <span class="text-red-400 font-bold text-3xl">
@@ -53,7 +57,8 @@
         <!--End card description-->
         <!--card footer-->
         <div class="relative ">
-            <button type="button" class="w-full text-white bg-blue-400 p-2 rounded-md hover:bg-blue-500"
+            <button type="button"
+                class="w-full text-white bg-blue-400 p-2 rounded-md hover:bg-blue-500"
                 (click)="detailFunction(item.id)">
                 Ver
             </button>
@@ -62,3 +67,13 @@
     <!--End card-->
 
 </div>
+<footer class="text-center 
+        bg-gradient-to-l from-transparent via-slate-200 to-transparent">
+    <!--footer-->
+    <pagination-controls
+        (pageChange)="p = $event"
+        previousLabel="Anterior"
+        nextLabel="Siguiente">
+    </pagination-controls>
+    <!--end footer-->
+</footer>

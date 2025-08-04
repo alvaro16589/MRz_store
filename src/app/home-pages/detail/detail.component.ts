@@ -1,10 +1,13 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
-import { ViewsService } from '../core/services/views/views.service';
-import { CarProdModel, ViewProdModel } from '../core/models/views.model';
+
+import { CarProdModel, ViewProdModel } from '../../core/models/views.model';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { VariablesService } from '../core/services/variables/variables.service';
+
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ViewsService } from '../../core/services/views/views.service';
+import { VariablesService } from '../../core/services/variables/variables.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-detail',
@@ -52,7 +55,8 @@ export class DetailComponent implements OnInit {
     private viewsService: ViewsService,
     private route: Router,
     private activatedRoute: ActivatedRoute,
-    private variablesService: VariablesService
+    private variablesService: VariablesService,
+    private toastr: ToastrService
   ) {
     this.colorState = variablesService.colorEstado;
   }
@@ -85,9 +89,13 @@ export class DetailComponent implements OnInit {
   }
 
   pushItems() {
-
-    this.detailProd.quantity = this.formSend.value.quantity!;
-    this.variablesService.dataObservableCarItems = this.detailProd;
+    try {
+      this.detailProd.quantity = this.formSend.value.quantity!;
+      this.variablesService.dataObservableCarItems = this.detailProd;
+      this.toastr.success('¡Se ha agregado ' + this.detailProd.quantity + " item(s) la registro!", 'Operación satisfactoria');
+    } catch (error) {
+      this.toastr.error("¡Ha ocurrido un error en la adición de datos!", 'Error');
+    }
 
     //this.variablesService.carItemsAdding(this.detailProd);
   }

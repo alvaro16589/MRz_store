@@ -7,6 +7,7 @@ import { UserService } from './services/user/user.service';
 import { OrderService } from './services/order/order.service';
 import { StateProdService } from './services/state-prod/state-prod.service';
 import { ProductService } from './services/product/product.service';
+import { OrderItemsService } from './services/order-items/order-items.service';
 
 
 
@@ -22,7 +23,8 @@ import { ProductService } from './services/product/product.service';
     UserService,
     OrderService,
     StateProdService,
-    ProductService
+    ProductService,
+    OrderItemsService
   ]
 })
 export class CoreModule { }

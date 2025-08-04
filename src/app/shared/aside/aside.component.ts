@@ -8,7 +8,7 @@ import { Router, RouterModule } from '@angular/router';
 import { ViewsService } from '../../core/services/views/views.service';
 import { ViewProdModel } from '../../core/models/views.model';
 import { VariablesService } from '../../core/services/variables/variables.service';
-import { DashboardComponent } from '../../dashboard/dashboard.component';
+
 
 @Component({
   selector: 'app-aside',

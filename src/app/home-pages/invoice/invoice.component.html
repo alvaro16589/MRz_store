@@ -113,8 +113,10 @@
             <img class="w-72" src="assets/pay.webp">
         </div>
         <div class="w-full">
-            <button class="btn-primary">
-                Continuar
+            <button class="btn-primary"
+                [disabled]="items.length===0"
+                (click)="send()">
+                Ordenar
             </button>
         </div>
     </div>

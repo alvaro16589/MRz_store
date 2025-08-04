@@ -18,7 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideToastr({
       closeButton:true, 
       timeOut:4000,
-      preventDuplicates:true,
+      preventDuplicates:false,
       progressBar: true
     }), // Toastr providers
     
