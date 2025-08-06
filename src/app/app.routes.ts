@@ -2,7 +2,8 @@ import { Routes } from '@angular/router';
 import { LayoutComponent } from './shared/layout/layout.component';
 import { LoginComponent } from './login/login-father/login.component';
 import { LayoutConfComponent } from './inOutItems/layout-conf/layout-conf.component';
-import { rolUserGuard, userInterfaceLoginGuard } from './core/guards/rol-user.guard';
+import { rolUserGuard, userInterfaceLoginGuard, userLoggedCanAccess } from './core/guards/rol-user.guard';
+import { LayoutUserOrderComponent } from './order-history/layout-user-order/layout-user-order.component';
 
 
 
@@ -50,7 +51,7 @@ export const routes: Routes = [
             {
                 path: 'register',
                 loadComponent: () => import('./login/user-register/user-register.component').then(c => c.UserRegisterComponent)
-            },
+            }
         ]
     },
     {
@@ -71,13 +72,30 @@ export const routes: Routes = [
             {
                 path: 'editprod/:id',
                 loadComponent: () => import('./inOutItems/products-conf/edit-product/edit-product.component').then(c => c.EditProductComponent)                
+            }
+        ]
+    },
+    {
+        path: 'history',
+        component: LayoutUserOrderComponent,
+        canActivateChild: [userLoggedCanAccess],
+        children: [
+            {
+                path: '',
+                redirectTo: 'order-items',
+                pathMatch: 'full'
+
             },
+            {
+                path: 'order-items',
+                loadComponent: () => import('./order-history/order-items/order-items.component').then(c => c.OrderItemsComponent)                
+            } 
         ]
     },
     {
         path: '**',
         loadComponent: () => import('./not-found/not-found.component').then(c => c.NotFoundComponent)
-    },
+    }
     
 
 ];

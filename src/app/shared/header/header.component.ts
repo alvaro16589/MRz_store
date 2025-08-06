@@ -69,7 +69,6 @@ export class HeaderComponent implements OnInit {
       this.renderer.removeClass(this.dropdownElement.nativeElement, 'hidden');
     } else {
       this.renderer.addClass(this.dropdownElement.nativeElement, 'hidden');
-    
     }
   }
 

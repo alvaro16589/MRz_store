@@ -37,7 +37,6 @@
                     </path>
                 </g>
             </svg>
-
             <span class="md:block">
                 Carrito
             </span>
@@ -78,6 +77,9 @@
                 </div>
                 <div class="cursor-pointer hover:bg-gray-300 p-2" *ngIf="userLogged.rol === 'root'">
                     <a routerLink="/config">Configuraciones</a>
+                </div>
+                <div class="cursor-pointer hover:bg-gray-300 p-2" >
+                    <a routerLink="/history">Órdenes</a>
                 </div>
                 <div (click)="logout()" class="cursor-pointer hover:bg-gray-300 p-2">
                     Cerrar sesión

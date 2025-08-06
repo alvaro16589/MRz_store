@@ -1,0 +1,87 @@
+<div [style.view-transition-name]="'serie-slide'" 
+    class="container  bg-slate-200 p-5 my-4 rounded-md mx-auto
+            mt-28 md:mt-10">
+    <!--title-->
+    <div class="font-bold text-4xl text-sky-700">
+        Órdenes
+    </div>
+    <!--end title-->
+    <!--description-->
+    <p class="text-sky-800 py-4">
+        Información disponible sobre las órndenes hechas y sus respectivos estados.
+    </p>
+    <!--end description-->
+    <!--Content-->
+    <ul>
+        <li *ngFor="let order of orderItems; index as i">
+            <div class="{{((i % 2) === 0)?'bg-slate-300':'bg-transparent'}} p-2 md:p-4 rounded-lg md:rounded-2xl">
+                <header class="flex flex-col md:flex-row justify-between">
+                    <strong>
+                        {{ order.created_at | date }}
+                    </strong>
+                    <span class=" {{
+                        (order.state === 'COMPLETADO')? colorOrderState.COMPLETADO:
+                         (order.state === 'CANCELADO')? colorOrderState.CANCELADO : colorOrderState.ENCURSO
+                        }} rounded-md p-1 text-xs">
+                        {{ order.state }}
+                    </span>
+                </header>
+                <details>
+                    <table class="w-full text-gray-800">
+                        <thead class="">
+                            <tr>
+                                <th class="py-3 md:px-6">
+                                    Imagen
+                                </th>
+                                <th class="py-3 md:px-6">
+                                    Item
+                                </th>
+                                <th class="py-3 md:px-6">
+                                    Descripción
+                                </th>
+                                <th class="py-3 ">
+                                    Precio
+                                </th>
+                                <th class="py-3 ">
+                                    Cant.
+                                </th>
+                                <th class="py-3 md:px-6">
+                                    Hora
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="hover:bg-gray-300"
+                                *ngFor="let item of order.items">
+                                <td class="py-3">
+                                    <a routerLink="/detail/{{ item.product_id }}">
+                                        <img [ngSrc]="item.image" width="600" height="600"
+                                        class="h-11 w-auto pl-[20%]"
+                                        placeholder>
+                                    </a>
+                                </td>
+                                <td class="py-3">
+                                    {{ item.name }}
+                                </td>
+                                <td class="py-3">
+                                    {{ item.description }}
+                                </td>
+                                <td class="py-3">
+                                    {{ item.price }}
+                                </td>
+                                <td class="py-3">
+                                    {{ item.quantity }}
+                                </td>
+                                <td class="py-3">
+                                    {{ item.created_at |date:'mediumTime'}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </details>
+            </div>
+
+        </li>
+    </ul>
+    <!--End content-->
+</div>

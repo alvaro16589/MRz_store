@@ -17,10 +17,10 @@ export class OrderService {
     return this.http.get<OrderModel[]>(environment.url_api + environment.orders);
   }
   //get somethings Orderss
-  getSomeoneOrder(id : number){
-    return this.http.get<OrderModel>(environment.url_api + environment.orders + '/' + id);
+  getOrdersByUserID(user_id : number){
+    return this.http.post<[OrderModel]>(environment.url_api + environment.orders,{user_id});
   }
-  //add new Orderss to database
+  //get a last order by user_id from data base
   getOrderForUserID(id_user : number){
     return this.http.get<[OrderModel]>(environment.url_api + environment.orderByUser + id_user);
   }

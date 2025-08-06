@@ -17,6 +17,12 @@ export class VariablesService {
     INACTIVO: 'bg-gray-300'
   }
 
+  colorEstadoOrder = {
+    COMPLETADO: 'bg-gray-300',
+    ENCURSO: 'bg-green-300',
+    CANCELADO: 'bg-red-500'
+  }
+
   
   private carItemsB: CarProdModel[] = [];
   private carItemsB$: BehaviorSubject<CarProdModel[]> = new BehaviorSubject<CarProdModel[]>([]);

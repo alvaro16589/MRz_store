@@ -21,3 +21,16 @@ export interface CarProdModel {
   state_p: string;
   quantity: number;
 }
+
+export interface UserOrdersItemsModel {
+  id: number;
+  order_id: number;
+  product_id: number;
+  quantity: number;
+  created_at: string;
+  name: number;
+  description: string;
+  price: number;
+  image: string;
+  state: string;
+}
