@@ -23,7 +23,9 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './edit-product.component.css'
 })
 export class EditProductComponent {
-  @ViewChild('imgPreview') myimgeRef!: ElementRef;
+  
+  @ViewChild('imgPreview') imgPreview!: ElementRef<HTMLImageElement>;
+
   categories: Category[] = [];
   states: StateProdModel[] = [];
 
@@ -69,7 +71,7 @@ export class EditProductComponent {
         this.productService.getSomeoneProduct(params['id']).
           subscribe(Data => {
             this.idProduct = Data[0].id; //capture the id form product
-            this.myimgeRef.nativeElement.src = Data[0].image;//rellenamos el IMG textbox invisible con la url de la imagen
+            this.imgPreview.nativeElement.src = Data[0].image;//rellenamos el IMG textbox invisible con la url de la imagen
             this.formProduct.patchValue({
               name: Data[0].name,
               description: Data[0].description,
@@ -102,7 +104,7 @@ export class EditProductComponent {
       //funcion para mostrar un preview de la imagen cargada
       const reader = new FileReader();
       reader.onload = () => {
-        this.myimgeRef.nativeElement.src = reader.result as string;
+        this.imgPreview.nativeElement.src = reader.result as string;
       };
       reader.readAsDataURL(this.data);
       this.formProduct.patchValue({ image: 'defauld' });
